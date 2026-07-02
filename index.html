@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanderson Fontes - AI Engineer Portfolio</title>
+  
+  <!-- Google Fonts: Space Grotesk (Modern Tech) & Fira Code (Developer Mono) & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* VARIÁVEIS DE CORES & EFEITOS SUPER TECH (DEFAULT DARK) */
+    :root {
+      --bg-color: #06060c;
+      --bg-gradient: radial-gradient(circle at 50% 10%, #0d0b21 0%, #040408 70%);
+      --grid-color: rgba(0, 240, 255, 0.02);
+      --card-bg: rgba(9, 9, 20, 0.75);
+      --card-border: rgba(0, 240, 255, 0.15);
+      --text-color: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #00f0ff; /* Cyber Cyan */
+      --accent-purple: #bd00ff; /* AI Purple */
+      --accent-rgb: 0, 240, 255;
+      --accent-hover: #00ffcc;
+      --shadow: 0 0 25px rgba(0, 240, 255, 0.1);
+      --timeline-line: rgba(0, 240, 255, 0.2);
+      --badge-bg: rgba(0, 240, 255, 0.06);
+      --badge-border: rgba(0, 240, 255, 0.2);
+    }
+
+    /* MODO CLARO ALTERNATIVO (CLEAN TECH LAB) */
+    [data-theme="light"] {
+      --bg-color: #f8fafc;
+      --bg-gradient: radial-gradient(circle at 50% 10%, #e2e8f0 0%, #f1f5f9 80%);
+      --grid-color: rgba(15, 23, 42, 0.02);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-border: rgba(15, 23, 42, 0.08);
+      --text-color: #0f172a;
+      --text-muted: #475569;
+      --accent: #0284c7; /* Precision Tech Blue */
+      --accent-purple: #7c3aed; /* Automation Violet */
+      --accent-rgb: 2, 132, 199;
+      --accent-hover: #0369a1;
+      --shadow: 0 4px 30px rgba(15, 23, 42, 0.04);
+      --timeline-line: rgba(15, 23, 42, 0.1);
+      --badge-bg: rgba(2, 132, 199, 0.06);
+      --badge-border: rgba(2, 132, 199, 0.15);
+    }
+
+    /* RESET & ESTILOS GERAIS */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      background-image: 
+        var(--bg-gradient),
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 100% 100%, 30px 30px, 30px 30px;
+      background-attachment: fixed;
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+
+    .mono {
+      font-family: 'Fira Code', monospace;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
+    }
+
+    /* CONTROLES FLUTUANTES (MENU RÁPIDO) */
+    .controls {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 1000;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-ctrl {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+      transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .btn-ctrl:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.3);
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* CABEÇALHO DIGITAL */
+    header {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-purple));
+    }
+
+    /* AVATAR COM PULSO DIGITAL */
+    .profile-avatar-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.1), rgba(189, 0, 255, 0.1));
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-avatar::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border-radius: 24px;
+      border: 1px dashed var(--accent-purple);
+      animation: spin 30s linear infinite;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .header-info h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #ffffff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .header-info h1 {
+      background: linear-gradient(90deg, #0f172a, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent-purple);
+      font-weight: 500;
+      margin-bottom: 25px;
+      letter-spacing: -0.5px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 15px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      width: 18px;
+      font-size: 1.1rem;
+    }
+
+    /* CARDS TECH */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 35px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+      position: relative;
+    }
+
+    .card::before {
+      content: '⚡';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      opacity: 0.25;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .card.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.15);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 30px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #fff;
+    }
+
+    [data-theme="light"] .section-title {
+      color: #0f172a;
+    }
+
+    .section-title i {
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.4);
+    }
+
+    /* LAYOUT BI-COLUNA */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 30px;
+    }
+
+    /* DESTAQUES DE TEXTO */
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+      background: var(--badge-bg);
+      padding: 1px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--badge-border);
+    }
+
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--text-color);
+      text-align: justify;
+    }
+
+    /* BADGES / CHIPS DE TECNOLOGIA */
+    .skills-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .chip {
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--text-color);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip::before {
+      content: '//';
+      color: var(--accent-purple);
+      font-weight: bold;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* BARRAS DE CAPACIDADE TÉCNICA */
+    .proficiency-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .skill-info span:first-child {
+      color: #fff;
+    }
+
+    [data-theme="light"] .skill-info span:first-child {
+      color: #0f172a;
+    }
+
+    .skill-bar-bg {
+      background: rgba(255, 255, 255, 0.05);
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    [data-theme="light"] .skill-bar-bg {
+      background: rgba(0, 0, 0, 0.08);
+      border: none;
+    }
+
+    .skill-bar-fill {
+      background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+      height: 100%;
+      width: 0%; /* Animado pelo JS */
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+      transition: width 1.5s cubic-bezier(0.1, 0.8, 0.3, 1);
+    }
+
+    /* CERTIFICADOS */
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      font-size: 0.9rem;
+      padding: 10px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+
+    .cert-item:hover {
+      border-color: rgba(var(--accent-rgb), 0.1);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .cert-item i {
+      color: var(--accent-purple);
+      margin-top: 4px;
+      font-size: 1.1rem;
+    }
+
+    /* FORMAÇÃO ACADÊMICA */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .edu-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 18px;
+    }
+
+    .edu-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    [data-theme="light"] .edu-title {
+      color: #0f172a;
+    }
+
+    .edu-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+      margin-top: 5px;
+    }
+
+    /* LINHA DO TEMPO (EXPERIÊNCIAS) */
+    .timeline {
+      position: relative;
+      padding-left: 35px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: var(--timeline-line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -33px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--bg-color);
+      border: 3px solid var(--accent);
+      z-index: 2;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .timeline-card:hover {
+      transform: scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.1);
+    }
+
+    .timeline-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.15);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 12px;
+    }
+
+    .role-title {
+      font-size: 1.25rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .role-title {
+      color: #0f172a;
+    }
+
+    .company-name {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1rem;
+      margin-top: 2px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .period {
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent-purple);
+      background: var(--badge-bg);
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--badge-border);
+    }
+
+    .location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* SISTEMA DE SANFONA (COLLAPSE/EXPAND) */
+    .timeline-details {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
+
+    .timeline-card.active .timeline-details {
+      max-height: 1200px;
+      opacity: 1;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--card-border);
+    }
+
+    .timeline-details ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .timeline-details li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-details li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: 'Fira Code', monospace;
+      font-weight: bold;
+    }
+
+    .tech-stack {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .tech-stack strong {
+      color: var(--accent);
+    }
+
+    /* INDICADOR INTERATIVO */
+    .expand-indicator {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .expand-indicator i {
+      transition: transform 0.3s;
+    }
+
+    .timeline-card.active .expand-indicator i {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    /* RODAPÉ DIGITAL */
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 30px;
+      border-top: 1px solid var(--card-border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ADAPTAÇÕES DE TELA (RESPONSIVIDADE) */
+    @media (max-width: 992px) {
+      .layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      header::before {
+        width: 100%;
+        height: 4px;
+      }
+
+      .profile-avatar-container {
+        margin: 0 auto 10px auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .period {
+        margin-top: 5px;
+      }
+    }
+
+    /* IMPRESSÃO LIMPA E OTIMIZADA */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .container {
+        margin-top: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      header {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 0 20px 0 !important;
+        margin-bottom: 20px !important;
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .profile-avatar-container {
+        display: none;
+      }
+
+      .header-info h1 {
+        -webkit-text-fill-color: initial !important;
+        color: #000000 !important;
+        font-size: 2.2rem;
+      }
+
+      .card {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 10px 0 !important;
+        margin-bottom: 20px !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .section-title {
+        border-bottom: 2px solid #000000 !important;
+        color: #000000 !important;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      .layout-grid {
+        display: block;
+      }
+
+      .chip {
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        background: transparent !important;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+      }
+
+      .skill-bar-bg {
+        background: #e5e7eb !important;
+        height: 6px;
+      }
+
+      .skill-bar-fill {
+        background: #000000 !important;
+        width: 100% !important;
+      }
+
+      .timeline::before {
+        background: #000000 !important;
+      }
+
+      .timeline-dot {
+        border-color: #000000 !important;
+        background: #ffffff !important;
+      }
+
+      .timeline-card {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 5px 0 !important;
+      }
+
+      .timeline-details {
+        max-height: none !important;
+        opacity: 1 !important;
+        display: block !important;
+        margin-top: 10px !important;
+        padding-top: 5px !important;
+        border-top: 1px solid #000000 !important;
+      }
+
+      .role-title {
+        color: #000000 !important;
+      }
+
+      .company-name, .period {
+        color: #000000 !important;
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+      }
+
+      .timeline-details li {
+        color: #111111 !important;
+      }
+
+      .timeline-details li::before {
+        color: #000000 !important;
+      }
+
+      .expand-indicator {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÕES DE CONTROLE NO-PRINT -->
+  <div class="controls no-print">
+    <button class="btn-ctrl" id="theme-toggle" title="Alternar interface Claro/Escuro" aria-label="Alternar Tema">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button class="btn-ctrl" onclick="window.print()" title="Imprimir / Exportar PDF" aria-label="Gerar PDF">
+      <i class="fas fa-file-pdf"></i>
+    </button>
+  </div>
+
+  <div class="container">
+    
+    <!-- CABEÇALHO DIGITAL -->
+    <header>
+      <div class="profile-avatar-container">
+        <div class="profile-avatar">WF</div>
+      </div>
+      <div class="header-info">
+        <h1>Wanderson Fontes</h1>
+        <div class="subtitle">&gt;_ Automation AI Engineer | Python | RPA | GenAI | AI Agent | MCP | A2A | AWS | GCP</div>
+        
+        <div class="contact-grid">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Feira de Santana, Bahia, Brasil</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span class="mono">(75) 99104-6185</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:wancf19@gmail.com" class="mono">wancf19@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/wanderson-fontes" target="_blank" class="mono">in/wanderson-fontes</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/WandersonFontes" target="_blank" class="mono">github/WandersonFontes</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTAINER GRID -->
+    <main class="layout-grid">
+      
+      <!-- ESQUERDA: Informações Técnicas Secundárias -->
+      <section class="left-column">
+        
+        <!-- VISÃO GERAL / RESUMO -->
+        <article class="card reveal">
+          <h2 class="section-title"><i class="fas fa-terminal"></i> Resumo_Executivo</h2>
+          <p class="about-text">
+            Engenheiro de Software e <span class="highlight">AI Engineer</span> especializado em Automação de Processos, Inteligência Artificial e arquiteturas cloud-native. Atuo na concepção e implementação de soluções escaláveis que conectam necessidades de negócio a workflows inteligentes. Possuo sólida experiência em <span class="highlight">Python</span>, RPA e desenvolvimento de aplicações baseadas em LLMs, com foco na construção de agentes de IA e workflows multiagentes (<span class="highlight">LangGraph</span>). Desenho arquiteturas serverless e orientadas a eventos, liderando a elaboração de HLDs e ADRs sob critérios de escalabilidade, observabilidade e otimização de custos. Adoto práticas rigorosas de governança de IA (Evals e monitoramento) e metodologias como <span class="highlight">Spec-Driven Development (SDD)</span> para acelerar o fluxo de engenharia. Além disso, possuo forte bagagem na padronização de processos e documentação técnica (PDDs e SDDs), garantindo entregas resilientes, previsíveis e orientadas a resultados.
+          </p>
+        </article>
+
+        <!-- COMPETÊNCIAS / CORE TECH -->
+        <article class="card reveal skill-section">
+          <h2 class="section-title"><i class="fas fa-brain"></i> Stack_Automação_IA</h2>
+          
+          <div class="skills-chips">
+            <span class="chip">Sistemas Multi-Agentes</span>
+            <span class="chip">Spec-driven Development</span>
+            <span class="chip">AI Agents (MCP / A2A)</span>
+            <span class="chip">Arquiteturas Serverless</span>
+            <span class="chip">Evals de IA</span>
+            <span class="chip">RPA High-Code</span>
+          </div>
+
+          <div class="proficiency-list">
+            <div>
+              <div class="skill-info">
+                <span>Python & FastAPI</span>
+                <span class="mono">95%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-target="95"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="skill-info">
+                <span>Orquestração GenAI (LangChain / LangGraph)</span>
+                <span class="mono">90%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-target="90"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="skill-info">
+                <span>Arquitetura Cloud (AWS / GCP)</span>
+                <span class="mono">85%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-target="85"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="skill-info">
+                <span>Automação & Raspagem (Selenium / Playwright)</span>
+                <span class="mono">92%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-target="92"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="skill-info">
+                <span>Banco de Dados (SQL & Vector Search)</span>
+                <span class="mono">80%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-target="80"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CERTIFICAÇÕES -->
+        <article class="card reveal">
+          <h2 class="section-title"><i class="fas fa-microchip"></i> Certificações_Validadas</h2>
+          <div class="cert-list">
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>Inteligência Artificial Generativa com a NVIDIA</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>Quickstart: LangChain Essentials - Python</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>BootCamp Pythônico</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>Python Básico</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>Machine Learning</span>
+            </div>
+            <div class="cert-item">
+              <i class="fas fa-shield-halved"></i>
+              <span>UiPath Automation Developer (Básico ao Avançado)</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- FORMAÇÃO ACADÊMICA -->
+        <article class="card reveal">
+          <h2 class="section-title"><i class="fas fa-code-branch"></i> Educação</h2>
+          <div class="edu-list">
+            <div class="edu-item">
+              <div class="edu-title">Universidade Salvador</div>
+              <div class="edu-subtitle">Bacharelado, Sistemas da Informação · 2019 - 2023</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">SENAI São Paulo</div>
+              <div class="edu-subtitle">Técnico em Desenvolvimento de Sistemas, Tecnologia da Informação · 2017 - 2019</div>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- DIREITA: Experiência Profissional (Timeline) -->
+      <section class="right-column">
+        <div class="card reveal">
+          <h2 class="section-title"><i class="fas fa-cogs"></i> Registro_de_Operacoes (Experiência)</h2>
+          
+          <div class="timeline">
+
+            <!-- GRAN -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card active">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Software Engineer II</h3>
+                    <div class="company-name">GRAN</div>
+                    <div class="location">Brasília, DF</div>
+                  </div>
+                  <span class="period">Julho de 2024 - Present</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação na squad de Automações e IA, desenvolvendo soluções baseadas em inteligência artificial generativa, workflows automatizados e arquiteturas cloud-native, com foco na otimização de processos educacionais e operacionais.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Projetei e implementei uma plataforma de monitoramento de sites em arquitetura serverless na AWS, utilizando EventBridge, Lambda, SQS, S3, SNS e backend em FastAPI e PostgreSQL.</li>
+                    <li>Orquestrei workflows de IA com LangGraph e LangChain, integrando web scraping por meio de Playwright e curl_cffi, além de análises semânticas utilizando modelos Gemini.</li>
+                    <li>Colaborei no desenvolvimento de um sistema de classificação de questões educacionais executado em AWS Lambda, utilizando busca vetorial no OpenSearch e classificação por modelos OpenAI (GPT).</li>
+                    <li>Desenvolvi interfaces em React e TypeScript para operação e gerenciamento das soluções pelos usuários.</li>
+                    <li>Implementei serviços de notificação utilizando Slack SDK, permitindo a integração das automações com fluxos operacionais e alertas em tempo real.</li>
+                    <li>Apliquei práticas de desenvolvimento orientado por especificação (Shift Left on Intent) e métricas de avaliação (Evals), contribuindo para a qualidade, segurança e confiabilidade dos workflows baseados em agentes de IA.</li>
+                  </ul>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-up"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- CERNN -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Bolsista de P&D</h3>
+                    <div class="company-name">CERNN - Centro de Pesquisas em Reologia e Fluidos Não Newtonianos</div>
+                    <div class="location">Curitiba, Paraná, Brasil</div>
+                  </div>
+                  <span class="period">Agosto de 2024 - Janeiro de 2025</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Pesquisa e desenvolvimento com foco em soluções analíticas inovadoras no segmento de comportamento e dinâmica de fluidos.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Atuação no suporte às atividades laboratoriais através de modelagens computacionais e instrumentação de software científico.</li>
+                    <li>Implementação de scripts de pré-processamento e visualização de dados experimentais.</li>
+                  </ul>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- BRQ -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Desenvolvedor Python</h3>
+                    <div class="company-name">BRQ Digital Solutions</div>
+                    <div class="location">São Paulo, Brasil</div>
+                  </div>
+                  <span class="period">Janeiro de 2024 - Julho de 2024</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação em squad de Automação, com foco no desenvolvimento de testes automatizados, integração contínua e automação de processos para aumento da qualidade e eficiência das entregas.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Desenvolvi suítes de testes automatizados utilizando Robot Framework, BDD e Jenkins, garantindo maior cobertura e confiabilidade dos testes.</li>
+                    <li>Configurei pipelines de CI/CD para execução e integração contínua dos testes automatizados ao processo de desenvolvimento.</li>
+                    <li>Desenvolvi automações utilizando Python e Power Automate para otimização de processos operacionais e redução de atividades manuais.</li>
+                    <li>Criei scripts SQL para preparação e manipulação de bases de dados, apoiando a execução e validação dos testes automatizados.</li>
+                  </ul>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- SMARTHIS -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Desenvolvedor Python</h3>
+                    <div class="company-name">Smarthis</div>
+                    <div class="location">Rio de Janeiro, Brasil</div>
+                  </div>
+                  <span class="period">Outubro de 2021 - Dezembro de 2023</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação em uma squad interna de Automação, desenvolvendo soluções de RPA, automações de processos e ferramentas de monitoramento de dados, com foco na eficiência operacional e transformação digital.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Desenvolvi projetos de automação web, desktop, RPA, raspagem e monitoramento de dados utilizando Python e diversas bibliotecas especializadas para automação, manipulação de dados, OCR e processamento de documentos.</li>
+                    <li>Implementei soluções utilizando ferramentas e frameworks como Selenium, Playwright, BotCity, Pandas, OpenPyXL, PyMuPDF, Tesseract, BeautifulSoup, curl_cffi e MSAL.</li>
+                    <li>Realizei a migração de automações desenvolvidas em plataformas low-code para soluções high-code em Python, aumentando a flexibilidade, escalabilidade e manutenibilidade dos processos.</li>
+                    <li>Contribuí para a execução e documentação de projetos com PDD (Process Definition Document) e SDD (Solution Design Document).</li>
+                  </ul>
+                  <div class="tech-stack">
+                    <strong>STACK_UTILIZADO:</strong> Python, Selenium, Playwright, BotCity, Pandas, OpenPyXL, BeautifulSoup, curl_cffi, PyMuPDF, Tesseract, MSAL e UiPath.
+                  </div>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- TOTAL SOLUÇÕES -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Desenvolvedor Web</h3>
+                    <div class="company-name">Total Soluções e Sistemas LTDA</div>
+                    <div class="location">Feira de Santana, BA</div>
+                  </div>
+                  <span class="period">Junho de 2020 - Outubro de 2021</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação no desenvolvimento e manutenção de sistemas web, com foco na evolução de aplicações, qualidade de software e automação de testes.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Desenvolvi e realizei a manutenção de sistemas web utilizando Laravel, Vue.js e Django, implementando novas funcionalidades, correções e melhorias contínuas.</li>
+                    <li>Colaborei na evolução de aplicações e na sustentação de sistemas, garantindo estabilidade e desempenho.</li>
+                    <li>Desenvolvi testes automatizados end-to-end (E2E) utilizando Python e Selenium, aumentando a cobertura de testes.</li>
+                  </ul>
+                  <div class="tech-stack">
+                    <strong>STACK_UTILIZADO:</strong> Laravel, Vue.js, Django, Python e Selenium.
+                  </div>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- DATA ATOMAÇÃO -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Analista de Suporte TI</h3>
+                    <div class="company-name">Data Atomação</div>
+                    <div class="location">Feira de Santana, BA</div>
+                  </div>
+                  <span class="period">Janeiro de 2018 - Junho de 2020</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação no suporte e implantação de sistemas ERP, com foco na análise de incidentes, atendimento aos usuários e acompanhamento da operação dos sistemas.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Realizei a análise e investigação de inconformidades em sistemas ERP, identificando causas e propondo soluções para garantir a continuidade das operações.</li>
+                    <li>Prestei suporte técnico aos usuários por meio de atendimento remoto, telefônico e presencial.</li>
+                    <li>Conduzi processos de implantação, atualização e parametrização de sistemas.</li>
+                  </ul>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- SAPELBA -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="role-title">Técnico em TI</h3>
+                    <div class="company-name">Sapelba</div>
+                    <div class="location">Feira de Santana, BA</div>
+                  </div>
+                  <span class="period">Janeiro de 2017 - Janeiro de 2018</span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                  Atuação no suporte técnico e infraestrutura de TI, com foco na manutenção de equipamentos, redes de computadores e atendimento aos usuários.
+                </p>
+                <div class="timeline-details">
+                  <ul>
+                    <li>Realizei manutenção preventiva e corretiva de hardware, efetuando diagnósticos e reparos.</li>
+                    <li>Configurei e administrei redes de computadores, garantindo conectividade e disponibilidade dos recursos.</li>
+                  </ul>
+                </div>
+                <div class="expand-indicator no-print">
+                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+      <p>&gt; System.out.println("© 2026 Wanderson Fontes. Executing AI Workflows...");</p>
+    </footer>
+
+  </div>
+
+  <!-- INTERATIVIDADE (JS VANILLA) -->
+  <script>
+    /* 1. TEMA CLARO / ESCURO (PERSISTENTE VIA LOCALSTORAGE) */
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      updateThemeIcon(currentTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      let theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateThemeIcon('dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        updateThemeIcon('light');
+      }
+    });
+
+    function updateThemeIcon(theme) {
+      const icon = themeToggle.querySelector('i');
+      if (theme === 'light') {
+        icon.className = 'fas fa-sun';
+      } else {
+        icon.className = 'fas fa-moon';
+      }
+    }
+
+    /* 2. SANFONA INTERATIVA DA LINHA DO TEMPO */
+    const timelineCards = document.querySelectorAll('.timeline-card');
+    
+    timelineCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.tagName.toLowerCase() === 'a') return;
+
+        const isCurrentlyActive = card.classList.contains('active');
+        const icon = card.querySelector('.expand-indicator i');
+        
+        if (isCurrentlyActive) {
+          card.classList.remove('active');
+          if (icon) icon.className = 'fas fa-chevron-down';
+        } else {
+          card.classList.add('active');
+          if (icon) icon.className = 'fas fa-chevron-up';
+        }
+      });
+    });
+
+    /* 3. SCROLL REVEAL COM INTERSECTION OBSERVER */
+    const revealCards = document.querySelectorAll('.card');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+          
+          if (entry.target.classList.contains('skill-section')) {
+            animateSkillBars();
+          }
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    revealCards.forEach(card => {
+      revealObserver.observe(card);
+    });
+
+    /* 4. ANIMAÇÃO DE PREENCHIMENTO DAS BARRAS DE HABILIDADES */
+    function animateSkillBars() {
+      const fills = document.querySelectorAll('.skill-bar-fill');
+      fills.forEach(fill => {
+        const target = fill.getAttribute('data-target');
+        fill.style.width = target + '%';
+      });
+    }
+  </script>
+</body>
+</html>
