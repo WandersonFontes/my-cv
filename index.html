@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wanderson Fontes - AI Engineer Portfolio</title>
+  <title id="page-title">Wanderson Fontes - AI Engineer Portfolio</title>
   
+  <!-- Favicon Tech SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2306060c'/%3E%3Cpath d='M26 34L44 50L26 66' stroke='%2300f0ff' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cline x1='52' y1='66' x2='78' y2='66' stroke='%23bd00ff' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+
   <!-- Google Fonts: Space Grotesk (Modern Tech) & Fira Code (Developer Mono) & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Font Awesome para Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -100,6 +103,7 @@
       right: 25px;
       z-index: 1000;
       display: flex;
+      align-items: center;
       gap: 12px;
     }
 
@@ -109,16 +113,18 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: var(--text-color);
-      width: 48px;
+      min-width: 48px;
       height: 48px;
+      padding: 0 14px;
       border-radius: 12px;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       box-shadow: var(--shadow);
       font-size: 1.15rem;
-      transition: transform 0.2s, background 0.2s, border-color 0.2s;
+      transition: transform 0.2s, background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+      user-select: none;
     }
 
     .btn-ctrl:hover {
@@ -126,6 +132,14 @@
       border-color: var(--accent);
       color: var(--accent);
       box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .btn-ctrl .lang-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-left: 6px;
+      letter-spacing: 0.5px;
     }
 
     /* CONTAINER PRINCIPAL */
@@ -202,6 +216,24 @@
       opacity: 0.6;
     }
 
+    .avatar-badge {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--accent);
+      box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
+      z-index: 5;
+    }
+
     @keyframes spin {
       100% { transform: rotate(360deg); }
     }
@@ -263,7 +295,7 @@
       box-shadow: var(--shadow);
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
       position: relative;
     }
 
@@ -573,7 +605,7 @@
     }
 
     .timeline-card.active .timeline-details {
-      max-height: 1200px;
+      max-height: 1400px;
       opacity: 1;
       margin-top: 20px;
       padding-top: 20px;
@@ -657,6 +689,24 @@
     }
 
     @media (max-width: 768px) {
+      .controls {
+        top: 14px;
+        right: 14px;
+        gap: 8px;
+      }
+
+      .btn-ctrl {
+        min-width: 42px;
+        height: 42px;
+        padding: 0 10px;
+        font-size: 1rem;
+      }
+
+      .btn-ctrl .lang-label {
+        font-size: 0.78rem;
+        margin-left: 4px;
+      }
+
       header {
         grid-template-columns: 1fr;
         text-align: center;
@@ -788,25 +838,6 @@
         border-top: 1px solid #000000 !important;
       }
 
-      .role-title {
-        color: #000000 !important;
-      }
-
-      .company-name, .period {
-        color: #000000 !important;
-        border: none !important;
-        padding: 0 !important;
-        background: transparent !important;
-      }
-
-      .timeline-details li {
-        color: #111111 !important;
-      }
-
-      .timeline-details li::before {
-        color: #000000 !important;
-      }
-
       .expand-indicator {
         display: none !important;
       }
@@ -820,7 +851,11 @@
     <button class="btn-ctrl" id="theme-toggle" title="Alternar interface Claro/Escuro" aria-label="Alternar Tema">
       <i class="fas fa-moon"></i>
     </button>
-    <button class="btn-ctrl" onclick="window.print()" title="Imprimir / Exportar PDF" aria-label="Gerar PDF">
+    <button class="btn-ctrl" id="lang-toggle" title="Mudar para Inglês (EN)" aria-label="Alternar Idioma">
+      <i class="fas fa-globe"></i>
+      <span id="lang-badge" class="lang-label">EN</span>
+    </button>
+    <button class="btn-ctrl" id="print-btn" onclick="window.print()" title="Imprimir / Exportar PDF" aria-label="Gerar PDF">
       <i class="fas fa-file-pdf"></i>
     </button>
   </div>
@@ -830,16 +865,21 @@
     <!-- CABEÇALHO DIGITAL -->
     <header>
       <div class="profile-avatar-container">
-        <div class="profile-avatar">WF</div>
+        <div class="profile-avatar">
+          <span>WF</span>
+          <div class="avatar-badge" title="AI Status: Online">
+            <i class="fas fa-terminal"></i>
+          </div>
+        </div>
       </div>
       <div class="header-info">
         <h1>Wanderson Fontes</h1>
-        <div class="subtitle">&gt;_ Automation AI Engineer | Python | RPA | GenAI | AI Agent | MCP | A2A | AWS | GCP</div>
+        <div class="subtitle" data-i18n="header_subtitle">&gt;_ Automation AI Engineer | Python | RPA | GenAI | AI Agent | MCP | A2A | AWS | GCP</div>
         
         <div class="contact-grid">
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
-            <span>Feira de Santana, Bahia, Brasil</span>
+            <span data-i18n="header_location">Feira de Santana, Bahia, Brasil</span>
           </div>
           <div class="contact-item">
             <i class="fas fa-phone"></i>
@@ -869,29 +909,29 @@
         
         <!-- VISÃO GERAL / RESUMO -->
         <article class="card reveal">
-          <h2 class="section-title"><i class="fas fa-terminal"></i> Resumo_Executivo</h2>
-          <p class="about-text">
+          <h2 class="section-title"><i class="fas fa-terminal"></i> <span data-i18n="summary_title">Resumo_Executivo</span></h2>
+          <p class="about-text" data-i18n-html="summary_text">
             Engenheiro de Software e <span class="highlight">AI Engineer</span> especializado em Automação de Processos, Inteligência Artificial e arquiteturas cloud-native. Atuo na concepção e implementação de soluções escaláveis que conectam necessidades de negócio a workflows inteligentes. Possuo sólida experiência em <span class="highlight">Python</span>, RPA e desenvolvimento de aplicações baseadas em LLMs, com foco na construção de agentes de IA e workflows multiagentes (<span class="highlight">LangGraph</span>). Desenho arquiteturas serverless e orientadas a eventos, liderando a elaboração de HLDs e ADRs sob critérios de escalabilidade, observabilidade e otimização de custos. Adoto práticas rigorosas de governança de IA (Evals e monitoramento) e metodologias como <span class="highlight">Spec-Driven Development (SDD)</span> para acelerar o fluxo de engenharia. Além disso, possuo forte bagagem na padronização de processos e documentação técnica (PDDs e SDDs), garantindo entregas resilientes, previsíveis e orientadas a resultados.
           </p>
         </article>
 
         <!-- COMPETÊNCIAS / CORE TECH -->
         <article class="card reveal skill-section">
-          <h2 class="section-title"><i class="fas fa-brain"></i> Stack_Automação_IA</h2>
+          <h2 class="section-title"><i class="fas fa-brain"></i> <span data-i18n="stack_title">Stack_Automação_IA</span></h2>
           
           <div class="skills-chips">
-            <span class="chip">Sistemas Multi-Agentes</span>
-            <span class="chip">Spec-driven Development</span>
-            <span class="chip">AI Agents (MCP / A2A)</span>
-            <span class="chip">Arquiteturas Serverless</span>
-            <span class="chip">Evals de IA</span>
-            <span class="chip">RPA High-Code</span>
+            <span class="chip" data-i18n="chip_multiagents">Sistemas Multi-Agentes</span>
+            <span class="chip" data-i18n="chip_sdd">Spec-driven Development</span>
+            <span class="chip" data-i18n="chip_agents">AI Agents (MCP / A2A)</span>
+            <span class="chip" data-i18n="chip_serverless">Arquiteturas Serverless</span>
+            <span class="chip" data-i18n="chip_evals">Evals de IA</span>
+            <span class="chip" data-i18n="chip_rpa">RPA High-Code</span>
           </div>
 
           <div class="proficiency-list">
             <div>
               <div class="skill-info">
-                <span>Python & FastAPI</span>
+                <span data-i18n="skill_1">Python & FastAPI</span>
                 <span class="mono">95%</span>
               </div>
               <div class="skill-bar-bg">
@@ -901,7 +941,7 @@
 
             <div>
               <div class="skill-info">
-                <span>Orquestração GenAI (LangChain / LangGraph)</span>
+                <span data-i18n="skill_2">Orquestração GenAI (LangChain / LangGraph)</span>
                 <span class="mono">90%</span>
               </div>
               <div class="skill-bar-bg">
@@ -911,7 +951,7 @@
 
             <div>
               <div class="skill-info">
-                <span>Arquitetura Cloud (AWS / GCP)</span>
+                <span data-i18n="skill_3">Arquitetura Cloud (AWS / GCP)</span>
                 <span class="mono">85%</span>
               </div>
               <div class="skill-bar-bg">
@@ -921,7 +961,7 @@
 
             <div>
               <div class="skill-info">
-                <span>Automação & Raspagem (Selenium / Playwright)</span>
+                <span data-i18n="skill_4">Automação & Raspagem (Selenium / Playwright)</span>
                 <span class="mono">92%</span>
               </div>
               <div class="skill-bar-bg">
@@ -931,7 +971,7 @@
 
             <div>
               <div class="skill-info">
-                <span>Banco de Dados (SQL & Vector Search)</span>
+                <span data-i18n="skill_5">Banco de Dados (SQL & Vector Search)</span>
                 <span class="mono">80%</span>
               </div>
               <div class="skill-bar-bg">
@@ -943,46 +983,46 @@
 
         <!-- CERTIFICAÇÕES -->
         <article class="card reveal">
-          <h2 class="section-title"><i class="fas fa-microchip"></i> Certificações_Validadas</h2>
+          <h2 class="section-title"><i class="fas fa-microchip"></i> <span data-i18n="cert_title">Certificações_Validadas</span></h2>
           <div class="cert-list">
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>Inteligência Artificial Generativa com a NVIDIA</span>
+              <span data-i18n="cert_1">Inteligência Artificial Generativa com a NVIDIA</span>
             </div>
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>Quickstart: LangChain Essentials - Python</span>
+              <span data-i18n="cert_2">Quickstart: LangChain Essentials - Python</span>
             </div>
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>BootCamp Pythônico</span>
+              <span data-i18n="cert_3">BootCamp Pythônico</span>
             </div>
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>Python Básico</span>
+              <span data-i18n="cert_4">Python Básico</span>
             </div>
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>Machine Learning</span>
+              <span data-i18n="cert_5">Machine Learning</span>
             </div>
             <div class="cert-item">
               <i class="fas fa-shield-halved"></i>
-              <span>UiPath Automation Developer (Básico ao Avançado)</span>
+              <span data-i18n="cert_6">UiPath Automation Developer (Básico ao Avançado)</span>
             </div>
           </div>
         </article>
 
         <!-- FORMAÇÃO ACADÊMICA -->
         <article class="card reveal">
-          <h2 class="section-title"><i class="fas fa-code-branch"></i> Educação</h2>
+          <h2 class="section-title"><i class="fas fa-code-branch"></i> <span data-i18n="edu_title">Educação</span></h2>
           <div class="edu-list">
             <div class="edu-item">
               <div class="edu-title">Universidade Salvador</div>
-              <div class="edu-subtitle">Bacharelado, Sistemas da Informação · 2019 - 2023</div>
+              <div class="edu-subtitle" data-i18n="edu_1_sub">Bacharelado, Sistemas da Informação · 2019 - 2023</div>
             </div>
             <div class="edu-item">
               <div class="edu-title">SENAI São Paulo</div>
-              <div class="edu-subtitle">Técnico em Desenvolvimento de Sistemas, Tecnologia da Informação · 2017 - 2019</div>
+              <div class="edu-subtitle" data-i18n="edu_2_sub">Técnico em Desenvolvimento de Sistemas, Tecnologia da Informação · 2017 - 2019</div>
             </div>
           </div>
         </article>
@@ -992,7 +1032,7 @@
       <!-- DIREITA: Experiência Profissional (Timeline) -->
       <section class="right-column">
         <div class="card reveal">
-          <h2 class="section-title"><i class="fas fa-cogs"></i> Registro_de_Operacoes (Experiência)</h2>
+          <h2 class="section-title"><i class="fas fa-cogs"></i> <span data-i18n="exp_title">Registro_de_Operacoes (Experiência)</span></h2>
           
           <div class="timeline">
 
@@ -1004,25 +1044,25 @@
                   <div>
                     <h3 class="role-title">Software Engineer II</h3>
                     <div class="company-name">GRAN</div>
-                    <div class="location">Brasília, DF</div>
+                    <div class="location" data-i18n="gran_location">Brasília, DF</div>
                   </div>
-                  <span class="period">Julho de 2024 - Present</span>
+                  <span class="period" data-i18n="gran_period">Julho de 2024 - Present</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="gran_desc">
                   Atuação na squad de Automações e IA, desenvolvendo soluções baseadas em inteligência artificial generativa, workflows automatizados e arquiteturas cloud-native, com foco na otimização de processos educacionais e operacionais.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Projetei e implementei uma plataforma de monitoramento de sites em arquitetura serverless na AWS, utilizando EventBridge, Lambda, SQS, S3, SNS e backend em FastAPI e PostgreSQL.</li>
-                    <li>Orquestrei workflows de IA com LangGraph e LangChain, integrando web scraping por meio de Playwright e curl_cffi, além de análises semânticas utilizando modelos Gemini.</li>
-                    <li>Colaborei no desenvolvimento de um sistema de classificação de questões educacionais executado em AWS Lambda, utilizando busca vetorial no OpenSearch e classificação por modelos OpenAI (GPT).</li>
-                    <li>Desenvolvi interfaces em React e TypeScript para operação e gerenciamento das soluções pelos usuários.</li>
-                    <li>Implementei serviços de notificação utilizando Slack SDK, permitindo a integração das automações com fluxos operacionais e alertas em tempo real.</li>
-                    <li>Apliquei práticas de desenvolvimento orientado por especificação (Shift Left on Intent) e métricas de avaliação (Evals), contribuindo para a qualidade, segurança e confiabilidade dos workflows baseados em agentes de IA.</li>
+                    <li data-i18n="gran_bullet_1">Projetei e implementei uma plataforma de monitoramento de sites em arquitetura serverless na AWS, utilizando EventBridge, Lambda, SQS, S3, SNS e backend em FastAPI e PostgreSQL.</li>
+                    <li data-i18n="gran_bullet_2">Orquestrei workflows de IA com LangGraph e LangChain, integrando web scraping por meio de Playwright e curl_cffi, além de análises semânticas utilizando modelos Gemini.</li>
+                    <li data-i18n="gran_bullet_3">Colaborei no desenvolvimento de um sistema de classificação de questões educacionais executado em AWS Lambda, utilizando busca vetorial no OpenSearch e classificação por modelos OpenAI (GPT).</li>
+                    <li data-i18n="gran_bullet_4">Desenvolvi interfaces em React e TypeScript para operação e gerenciamento das soluções pelos usuários.</li>
+                    <li data-i18n="gran_bullet_5">Implementei serviços de notificação utilizando Slack SDK, permitindo a integração das automações com fluxos operacionais e alertas em tempo real.</li>
+                    <li data-i18n="gran_bullet_6">Apliquei práticas de desenvolvimento orientado por especificação (Shift Left on Intent) e métricas de avaliação (Evals), contribuindo para a qualidade, segurança e confiabilidade dos workflows baseados em agentes de IA.</li>
                   </ul>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-up"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-up"></i>
                 </div>
               </div>
             </div>
@@ -1033,23 +1073,23 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Bolsista de P&D</h3>
-                    <div class="company-name">CERNN - Centro de Pesquisas em Reologia e Fluidos Não Newtonianos</div>
-                    <div class="location">Curitiba, Paraná, Brasil</div>
+                    <h3 class="role-title" data-i18n="cernn_role">Bolsista de P&D</h3>
+                    <div class="company-name" data-i18n="cernn_company">CERNN - Centro de Pesquisas em Reologia e Fluidos Não Newtonianos</div>
+                    <div class="location" data-i18n="cernn_location">Curitiba, Paraná, Brasil</div>
                   </div>
-                  <span class="period">Agosto de 2024 - Janeiro de 2025</span>
+                  <span class="period" data-i18n="cernn_period">Agosto de 2024 - Janeiro de 2025</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="cernn_desc">
                   Pesquisa e desenvolvimento com foco em soluções analíticas inovadoras no segmento de comportamento e dinâmica de fluidos.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Atuação no suporte às atividades laboratoriais através de modelagens computacionais e instrumentação de software científico.</li>
-                    <li>Implementação de scripts de pré-processamento e visualização de dados experimentais.</li>
+                    <li data-i18n="cernn_bullet_1">Atuação no suporte às atividades laboratoriais através de modelagens computacionais e instrumentação de software científico.</li>
+                    <li data-i18n="cernn_bullet_2">Implementação de scripts de pré-processamento e visualização de dados experimentais.</li>
                   </ul>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1060,25 +1100,25 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Desenvolvedor Python</h3>
+                    <h3 class="role-title" data-i18n="brq_role">Desenvolvedor Python</h3>
                     <div class="company-name">BRQ Digital Solutions</div>
-                    <div class="location">São Paulo, Brasil</div>
+                    <div class="location" data-i18n="brq_location">São Paulo, Brasil</div>
                   </div>
-                  <span class="period">Janeiro de 2024 - Julho de 2024</span>
+                  <span class="period" data-i18n="brq_period">Janeiro de 2024 - Julho de 2024</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="brq_desc">
                   Atuação em squad de Automação, com foco no desenvolvimento de testes automatizados, integração contínua e automação de processos para aumento da qualidade e eficiência das entregas.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Desenvolvi suítes de testes automatizados utilizando Robot Framework, BDD e Jenkins, garantindo maior cobertura e confiabilidade dos testes.</li>
-                    <li>Configurei pipelines de CI/CD para execução e integração contínua dos testes automatizados ao processo de desenvolvimento.</li>
-                    <li>Desenvolvi automações utilizando Python e Power Automate para otimização de processos operacionais e redução de atividades manuais.</li>
-                    <li>Criei scripts SQL para preparação e manipulação de bases de dados, apoiando a execução e validação dos testes automatizados.</li>
+                    <li data-i18n="brq_bullet_1">Desenvolvi suítes de testes automatizados utilizando Robot Framework, BDD e Jenkins, garantindo maior cobertura e confiabilidade dos testes.</li>
+                    <li data-i18n="brq_bullet_2">Configurei pipelines de CI/CD para execução e integração contínua dos testes automatizados ao processo de desenvolvimento.</li>
+                    <li data-i18n="brq_bullet_3">Desenvolvi automações utilizando Python e Power Automate para otimização de processos operacionais e redução de atividades manuais.</li>
+                    <li data-i18n="brq_bullet_4">Criei scripts SQL para preparação e manipulação de bases de dados, apoiando a execução e validação dos testes automatizados.</li>
                   </ul>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1089,28 +1129,28 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Desenvolvedor Python</h3>
+                    <h3 class="role-title" data-i18n="smarthis_role">Desenvolvedor Python</h3>
                     <div class="company-name">Smarthis</div>
-                    <div class="location">Rio de Janeiro, Brasil</div>
+                    <div class="location" data-i18n="smarthis_location">Rio de Janeiro, Brasil</div>
                   </div>
-                  <span class="period">Outubro de 2021 - Dezembro de 2023</span>
+                  <span class="period" data-i18n="smarthis_period">Outubro de 2021 - Dezembro de 2023</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="smarthis_desc">
                   Atuação em uma squad interna de Automação, desenvolvendo soluções de RPA, automações de processos e ferramentas de monitoramento de dados, com foco na eficiência operacional e transformação digital.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Desenvolvi projetos de automação web, desktop, RPA, raspagem e monitoramento de dados utilizando Python e diversas bibliotecas especializadas para automação, manipulação de dados, OCR e processamento de documentos.</li>
-                    <li>Implementei soluções utilizando ferramentas e frameworks como Selenium, Playwright, BotCity, Pandas, OpenPyXL, PyMuPDF, Tesseract, BeautifulSoup, curl_cffi e MSAL.</li>
-                    <li>Realizei a migração de automações desenvolvidas em plataformas low-code para soluções high-code em Python, aumentando a flexibilidade, escalabilidade e manutenibilidade dos processos.</li>
-                    <li>Contribuí para a execução e documentação de projetos com PDD (Process Definition Document) e SDD (Solution Design Document).</li>
+                    <li data-i18n="smarthis_bullet_1">Desenvolvi projetos de automação web, desktop, RPA, raspagem e monitoramento de dados utilizando Python e diversas bibliotecas especializadas para automação, manipulação de dados, OCR e processamento de documentos.</li>
+                    <li data-i18n="smarthis_bullet_2">Implementei soluções utilizando ferramentas e frameworks como Selenium, Playwright, BotCity, Pandas, OpenPyXL, PyMuPDF, Tesseract, BeautifulSoup, curl_cffi e MSAL.</li>
+                    <li data-i18n="smarthis_bullet_3">Realizei a migração de automações desenvolvidas em plataformas low-code para soluções high-code em Python, aumentando a flexibilidade, escalabilidade e manutenibilidade dos processos.</li>
+                    <li data-i18n="smarthis_bullet_4">Contribuí para a execução e documentação de projetos com PDD (Process Definition Document) e SDD (Solution Design Document).</li>
                   </ul>
                   <div class="tech-stack">
-                    <strong>STACK_UTILIZADO:</strong> Python, Selenium, Playwright, BotCity, Pandas, OpenPyXL, BeautifulSoup, curl_cffi, PyMuPDF, Tesseract, MSAL e UiPath.
+                    <strong data-i18n="stack_label">STACK_UTILIZADO:</strong> Python, Selenium, Playwright, BotCity, Pandas, OpenPyXL, BeautifulSoup, curl_cffi, PyMuPDF, Tesseract, MSAL e UiPath.
                   </div>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1121,27 +1161,27 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Desenvolvedor Web</h3>
+                    <h3 class="role-title" data-i18n="total_role">Desenvolvedor Web</h3>
                     <div class="company-name">Total Soluções e Sistemas LTDA</div>
-                    <div class="location">Feira de Santana, BA</div>
+                    <div class="location" data-i18n="total_location">Feira de Santana, BA</div>
                   </div>
-                  <span class="period">Junho de 2020 - Outubro de 2021</span>
+                  <span class="period" data-i18n="total_period">Junho de 2020 - Outubro de 2021</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="total_desc">
                   Atuação no desenvolvimento e manutenção de sistemas web, com foco na evolução de aplicações, qualidade de software e automação de testes.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Desenvolvi e realizei a manutenção de sistemas web utilizando Laravel, Vue.js e Django, implementando novas funcionalidades, correções e melhorias contínuas.</li>
-                    <li>Colaborei na evolução de aplicações e na sustentação de sistemas, garantindo estabilidade e desempenho.</li>
-                    <li>Desenvolvi testes automatizados end-to-end (E2E) utilizando Python e Selenium, aumentando a cobertura de testes.</li>
+                    <li data-i18n="total_bullet_1">Desenvolvi e realizei a manutenção de sistemas web utilizando Laravel, Vue.js e Django, implementando novas funcionalidades, correções e melhorias contínuas.</li>
+                    <li data-i18n="total_bullet_2">Colaborei na evolução de aplicações e na sustentação de sistemas, garantindo estabilidade e desempenho.</li>
+                    <li data-i18n="total_bullet_3">Desenvolvi testes automatizados end-to-end (E2E) utilizando Python e Selenium, aumentando a cobertura de testes.</li>
                   </ul>
                   <div class="tech-stack">
-                    <strong>STACK_UTILIZADO:</strong> Laravel, Vue.js, Django, Python e Selenium.
+                    <strong data-i18n="stack_label">STACK_UTILIZADO:</strong> Laravel, Vue.js, Django, Python e Selenium.
                   </div>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1152,24 +1192,24 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Analista de Suporte TI</h3>
+                    <h3 class="role-title" data-i18n="data_role">Analista de Suporte TI</h3>
                     <div class="company-name">Data Atomação</div>
-                    <div class="location">Feira de Santana, BA</div>
+                    <div class="location" data-i18n="data_location">Feira de Santana, BA</div>
                   </div>
-                  <span class="period">Janeiro de 2018 - Junho de 2020</span>
+                  <span class="period" data-i18n="data_period">Janeiro de 2018 - Junho de 2020</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="data_desc">
                   Atuação no suporte e implantação de sistemas ERP, com foco na análise de incidentes, atendimento aos usuários e acompanhamento da operação dos sistemas.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Realizei a análise e investigação de inconformidades em sistemas ERP, identificando causas e propondo soluções para garantir a continuidade das operações.</li>
-                    <li>Prestei suporte técnico aos usuários por meio de atendimento remoto, telefônico e presencial.</li>
-                    <li>Conduzi processos de implantação, atualização e parametrização de sistemas.</li>
+                    <li data-i18n="data_bullet_1">Realizei a análise e investigação de inconformidades em sistemas ERP, identificando causas e propondo soluções para garantir a continuidade das operações.</li>
+                    <li data-i18n="data_bullet_2">Prestei suporte técnico aos usuários por meio de atendimento remoto, telefônico e presencial.</li>
+                    <li data-i18n="data_bullet_3">Conduzi processos de implantação, atualização e parametrização de sistemas.</li>
                   </ul>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1180,23 +1220,23 @@
               <div class="timeline-card">
                 <div class="timeline-header">
                   <div>
-                    <h3 class="role-title">Técnico em TI</h3>
+                    <h3 class="role-title" data-i18n="sapelba_role">Técnico em TI</h3>
                     <div class="company-name">Sapelba</div>
-                    <div class="location">Feira de Santana, BA</div>
+                    <div class="location" data-i18n="sapelba_location">Feira de Santana, BA</div>
                   </div>
-                  <span class="period">Janeiro de 2017 - Janeiro de 2018</span>
+                  <span class="period" data-i18n="sapelba_period">Janeiro de 2017 - Janeiro de 2018</span>
                 </div>
-                <p style="font-size: 0.92rem; margin-bottom: 10px;">
+                <p style="font-size: 0.92rem; margin-bottom: 10px;" data-i18n="sapelba_desc">
                   Atuação no suporte técnico e infraestrutura de TI, com foco na manutenção de equipamentos, redes de computadores e atendimento aos usuários.
                 </p>
                 <div class="timeline-details">
                   <ul>
-                    <li>Realizei manutenção preventiva e corretiva de hardware, efetuando diagnósticos e reparos.</li>
-                    <li>Configurei e administrei redes de computadores, garantindo conectividade e disponibilidade dos recursos.</li>
+                    <li data-i18n="sapelba_bullet_1">Realizei manutenção preventiva e corretiva de hardware, efetuando diagnósticos e reparos.</li>
+                    <li data-i18n="sapelba_bullet_2">Configurei e administrei redes de computadores, garantindo conectividade e disponibilidade dos recursos.</li>
                   </ul>
                 </div>
                 <div class="expand-indicator no-print">
-                  <span>CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
+                  <span data-i18n="expand_indicator">CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO</span> <i class="fas fa-chevron-down"></i>
                 </div>
               </div>
             </div>
@@ -1209,34 +1249,206 @@
 
     <!-- RODAPÉ -->
     <footer>
-      <p>&gt; System.out.println("© 2026 Wanderson Fontes. Executing AI Workflows...");</p>
+      <p data-i18n-html="footer_text">&gt; System.out.println("© 2026 Wanderson Fontes. Executing AI Workflows...");</p>
     </footer>
 
   </div>
 
   <!-- INTERATIVIDADE (JS VANILLA) -->
   <script>
+    /* DICIONÁRIO DE INTERNACIONALIZAÇÃO (PT-BR / EN) */
+    const i18n = {
+      'pt-BR': {
+        doc_title: 'Wanderson Fontes - AI Engineer Portfolio',
+        theme_title: 'Alternar interface Claro/Escuro',
+        lang_btn_title: 'Mudar para Inglês (EN)',
+        pdf_title: 'Imprimir / Exportar PDF',
+        header_subtitle: '>_ Automation AI Engineer | Python | RPA | GenAI | AI Agent | MCP | A2A | AWS | GCP',
+        header_location: 'Feira de Santana, Bahia, Brasil',
+        summary_title: 'Resumo_Executivo',
+        summary_text: 'Engenheiro de Software e <span class="highlight">AI Engineer</span> especializado em Automação de Processos, Inteligência Artificial e arquiteturas cloud-native. Atuo na concepção e implementação de soluções escaláveis que conectam necessidades de negócio a workflows inteligentes. Possuo sólida experiência em <span class="highlight">Python</span>, RPA e desenvolvimento de aplicações baseadas em LLMs, com foco na construção de agentes de IA e workflows multiagentes (<span class="highlight">LangGraph</span>). Desenho arquiteturas serverless e orientadas a eventos, liderando a elaboração de HLDs e ADRs sob critérios de escalabilidade, observabilidade e otimização de custos. Adoto práticas rigorosas de governança de IA (Evals e monitoramento) e metodologias como <span class="highlight">Spec-Driven Development (SDD)</span> para acelerar o fluxo de engenharia. Além disso, possuo forte bagagem na padronização de processos e documentação técnica (PDDs e SDDs), garantindo entregas resilientes, previsíveis e orientadas a resultados.',
+        stack_title: 'Stack_Automação_IA',
+        chip_multiagents: 'Sistemas Multi-Agentes',
+        chip_sdd: 'Spec-driven Development',
+        chip_agents: 'AI Agents (MCP / A2A)',
+        chip_serverless: 'Arquiteturas Serverless',
+        chip_evals: 'Evals de IA',
+        chip_rpa: 'RPA High-Code',
+        skill_1: 'Python & FastAPI',
+        skill_2: 'Orquestração GenAI (LangChain / LangGraph)',
+        skill_3: 'Arquitetura Cloud (AWS / GCP)',
+        skill_4: 'Automação & Raspagem (Selenium / Playwright)',
+        skill_5: 'Banco de Dados (SQL & Vector Search)',
+        cert_title: 'Certificações_Validadas',
+        cert_1: 'Inteligência Artificial Generativa com a NVIDIA',
+        cert_2: 'Quickstart: LangChain Essentials - Python',
+        cert_3: 'BootCamp Pythônico',
+        cert_4: 'Python Básico',
+        cert_5: 'Machine Learning',
+        cert_6: 'UiPath Automation Developer (Básico ao Avançado)',
+        edu_title: 'Educação',
+        edu_1_sub: 'Bacharelado, Sistemas da Informação · 2019 - 2023',
+        edu_2_sub: 'Técnico em Desenvolvimento de Sistemas, Tecnologia da Informação · 2017 - 2019',
+        exp_title: 'Registro_de_Operacoes (Experiência)',
+        expand_indicator: 'CLIQUE PARA ENTRAR/SAIR DO MODO DETALHADO',
+        stack_label: 'STACK_UTILIZADO:',
+        gran_period: 'Julho de 2024 - Present',
+        gran_location: 'Brasília, DF',
+        gran_desc: 'Atuação na squad de Automações e IA, desenvolvendo soluções baseadas em inteligência artificial generativa, workflows automatizados e arquiteturas cloud-native, com foco na otimização de processos educacionais e operacionais.',
+        gran_bullet_1: 'Projetei e implementei uma plataforma de monitoramento de sites em arquitetura serverless na AWS, utilizando EventBridge, Lambda, SQS, S3, SNS e backend em FastAPI e PostgreSQL.',
+        gran_bullet_2: 'Orquestrei workflows de IA com LangGraph e LangChain, integrando web scraping por meio de Playwright e curl_cffi, além de análises semânticas utilizando modelos Gemini.',
+        gran_bullet_3: 'Colaborei no desenvolvimento de um sistema de classificação de questões educacionais executado em AWS Lambda, utilizando busca vetorial no OpenSearch e classificação por modelos OpenAI (GPT).',
+        gran_bullet_4: 'Desenvolvi interfaces em React e TypeScript para operação e gerenciamento das soluções pelos usuários.',
+        gran_bullet_5: 'Implementei serviços de notificação utilizando Slack SDK, permitindo a integração das automações com fluxos operacionais e alertas em tempo real.',
+        gran_bullet_6: 'Apliquei práticas de desenvolvimento orientado por especificação (Shift Left on Intent) e métricas de avaliação (Evals), contribuindo para a qualidade, segurança e confiabilidade dos workflows baseados em agentes de IA.',
+        cernn_role: 'Bolsista de P&D',
+        cernn_company: 'CERNN - Centro de Pesquisas em Reologia e Fluidos Não Newtonianos',
+        cernn_period: 'Agosto de 2024 - Janeiro de 2025',
+        cernn_location: 'Curitiba, Paraná, Brasil',
+        cernn_desc: 'Pesquisa e desenvolvimento com foco em soluções analíticas inovadoras no segmento de comportamento e dinâmica de fluidos.',
+        cernn_bullet_1: 'Atuação no suporte às atividades laboratoriais através de modelagens computacionais e instrumentação de software científico.',
+        cernn_bullet_2: 'Implementação de scripts de pré-processamento e visualização de dados experimentais.',
+        brq_role: 'Desenvolvedor Python',
+        brq_period: 'Janeiro de 2024 - Julho de 2024',
+        brq_location: 'São Paulo, Brasil',
+        brq_desc: 'Atuação em squad de Automação, com foco no desenvolvimento de testes automatizados, integração contínua e automação de processos para aumento da qualidade e eficiência das entregas.',
+        brq_bullet_1: 'Desenvolvi suítes de testes automatizados utilizando Robot Framework, BDD e Jenkins, garantindo maior cobertura e confiabilidade dos testes.',
+        brq_bullet_2: 'Configurei pipelines de CI/CD para execução e integração contínua dos testes automatizados ao processo de desenvolvimento.',
+        brq_bullet_3: 'Desenvolvi automações utilizando Python e Power Automate para otimização de processos operacionais e redução de atividades manuais.',
+        brq_bullet_4: 'Criei scripts SQL para preparação e manipulação de bases de dados, apoiando a execução e validação dos testes automatizados.',
+        smarthis_role: 'Desenvolvedor Python',
+        smarthis_period: 'Outubro de 2021 - Dezembro de 2023',
+        smarthis_location: 'Rio de Janeiro, Brasil',
+        smarthis_desc: 'Atuação em uma squad interna de Automação, desenvolvendo soluções de RPA, automações de processos e ferramentas de monitoramento de dados, com foco na eficiência operacional e transformação digital.',
+        smarthis_bullet_1: 'Desenvolvi projetos de automação web, desktop, RPA, raspagem e monitoramento de dados utilizando Python e diversas bibliotecas especializadas para automação, manipulação de dados, OCR e processamento de documentos.',
+        smarthis_bullet_2: 'Implementei soluções utilizando ferramentas e frameworks como Selenium, Playwright, BotCity, Pandas, OpenPyXL, PyMuPDF, Tesseract, BeautifulSoup, curl_cffi e MSAL.',
+        smarthis_bullet_3: 'Realizei a migração de automações desenvolvidas em plataformas low-code para soluções high-code em Python, aumentando a flexibilidade, escalabilidade e manutenibilidade dos processos.',
+        smarthis_bullet_4: 'Contribuí para a execução e documentação de projetos com PDD (Process Definition Document) e SDD (Solution Design Document).',
+        total_role: 'Desenvolvedor Web',
+        total_period: 'Junho de 2020 - Outubro de 2021',
+        total_location: 'Feira de Santana, BA',
+        total_desc: 'Atuação no desenvolvimento e manutenção de sistemas web, com foco na evolução de aplicações, qualidade de software e automação de testes.',
+        total_bullet_1: 'Desenvolvi e realizei a manutenção de sistemas web utilizando Laravel, Vue.js e Django, implementando novas funcionalidades, correções e melhorias contínuas.',
+        total_bullet_2: 'Colaborei na evolução de aplicações e na sustentação de sistemas, garantindo estabilidade e desempenho.',
+        total_bullet_3: 'Desenvolvi testes automatizados end-to-end (E2E) utilizando Python e Selenium, aumentando a cobertura de testes.',
+        data_role: 'Analista de Suporte TI',
+        data_period: 'Janeiro de 2018 - Junho de 2020',
+        data_location: 'Feira de Santana, BA',
+        data_desc: 'Atuação no suporte e implantação de sistemas ERP, com foco na análise de incidentes, atendimento aos usuários e acompanhamento da operação dos sistemas.',
+        data_bullet_1: 'Realizei a análise e investigação de inconformidades em sistemas ERP, identificando causas e propondo soluções para garantir a continuidade das operações.',
+        data_bullet_2: 'Prestei suporte técnico aos usuários por meio de atendimento remoto, telefônico e presencial.',
+        data_bullet_3: 'Conduzi processos de implantação, atualização e parametrização de sistemas.',
+        sapelba_role: 'Técnico em TI',
+        sapelba_period: 'Janeiro de 2017 - Janeiro de 2018',
+        sapelba_location: 'Feira de Santana, BA',
+        sapelba_desc: 'Atuação no suporte técnico e infraestrutura de TI, com foco na manutenção de equipamentos, redes de computadores e atendimento aos usuários.',
+        sapelba_bullet_1: 'Realizei manutenção preventiva e corretiva de hardware, efetuando diagnósticos e reparos.',
+        sapelba_bullet_2: 'Configurei e administrei redes de computadores, garantindo conectividade e disponibilidade dos recursos.',
+        footer_text: '&gt; System.out.println("© 2026 Wanderson Fontes. Executing AI Workflows...");'
+      },
+      'en': {
+        doc_title: 'Wanderson Fontes - AI Engineer Resume & Portfolio',
+        theme_title: 'Toggle Light/Dark Theme',
+        lang_btn_title: 'Switch to Portuguese (PT)',
+        pdf_title: 'Print / Export to PDF',
+        header_subtitle: '>_ Automation AI Engineer | Python | RPA | GenAI | AI Agents | MCP | A2A | AWS | GCP',
+        header_location: 'Feira de Santana, Bahia, Brazil',
+        summary_title: 'Executive_Summary',
+        summary_text: 'Software Engineer and <span class="highlight">AI Engineer</span> specialized in Process Automation, Artificial Intelligence, and cloud-native architectures. I architect and implement scalable solutions that bridge business demands with intelligent workflows. Extensive experience in <span class="highlight">Python</span>, RPA, and LLM-powered applications, focusing on building autonomous AI agents and multi-agent systems (<span class="highlight">LangGraph</span>). I design serverless, event-driven architectures, authoring HLDs and ADRs driven by scalability, observability, and cost-efficiency. I apply rigorous AI governance practices (Evals and telemetry) and methodologies like <span class="highlight">Spec-Driven Development (SDD)</span> to boost engineering velocity. Additionally, I hold solid expertise in process standardization and technical documentation (PDDs and SDDs), delivering resilient, dependable, and high-impact results.',
+        stack_title: 'AI_Automation_Stack',
+        chip_multiagents: 'Multi-Agent Systems',
+        chip_sdd: 'Spec-Driven Development',
+        chip_agents: 'AI Agents (MCP / A2A)',
+        chip_serverless: 'Serverless Architectures',
+        chip_evals: 'AI Evals & Benchmarks',
+        chip_rpa: 'High-Code RPA',
+        skill_1: 'Python & FastAPI',
+        skill_2: 'GenAI Orchestration (LangChain / LangGraph)',
+        skill_3: 'Cloud Architecture (AWS / GCP)',
+        skill_4: 'Automation & Scraping (Selenium / Playwright)',
+        skill_5: 'Databases (SQL & Vector Search)',
+        cert_title: 'Validated_Certifications',
+        cert_1: 'Generative AI with NVIDIA',
+        cert_2: 'Quickstart: LangChain Essentials - Python',
+        cert_3: 'Pythonic Bootcamp',
+        cert_4: 'Python Fundamentals',
+        cert_5: 'Machine Learning',
+        cert_6: 'UiPath Automation Developer (Associate to Advanced)',
+        edu_title: 'Education',
+        edu_1_sub: "Bachelor's Degree, Information Systems · 2019 - 2023",
+        edu_2_sub: 'Technical Degree in Systems Development, Information Technology · 2017 - 2019',
+        exp_title: 'Operations_Log (Experience)',
+        expand_indicator: 'CLICK TO EXPAND/COLLAPSE DETAILS',
+        stack_label: 'TECH_STACK:',
+        gran_period: 'July 2024 - Present',
+        gran_location: 'Brasília, DF, Brazil',
+        gran_desc: 'Working in the Automations and AI squad, developing solutions based on generative artificial intelligence, automated workflows, and cloud-native architectures, focused on educational and operational optimization.',
+        gran_bullet_1: 'Architected and deployed a serverless website monitoring platform on AWS, leveraging EventBridge, Lambda, SQS, S3, SNS, with a backend built in FastAPI and PostgreSQL.',
+        gran_bullet_2: 'Orchestrated AI workflows with LangGraph and LangChain, combining web scraping via Playwright and curl_cffi, alongside semantic analyses using Gemini models.',
+        gran_bullet_3: 'Collaborated on an educational question classification system hosted on AWS Lambda, utilizing vector search in OpenSearch and OpenAI (GPT) classification models.',
+        gran_bullet_4: 'Engineered responsive interfaces in React and TypeScript for operational management of internal solutions.',
+        gran_bullet_5: 'Implemented notification pipelines using Slack SDK, connecting automated processes with operational teams and real-time alerts.',
+        gran_bullet_6: 'Applied spec-driven development (Shift Left on Intent) and evaluation frameworks (Evals), elevating the quality, safety, and reliability of AI agent workflows.',
+        cernn_role: 'R&D Fellow / Researcher',
+        cernn_company: 'CERNN - Research Center for Rheology and Non-Newtonian Fluids',
+        cernn_period: 'August 2024 - January 2025',
+        cernn_location: 'Curitiba, Paraná, Brazil',
+        cernn_desc: 'Research and development focused on innovative analytical solutions in fluid dynamics and non-Newtonian rheological behavior.',
+        cernn_bullet_1: 'Supported laboratory activities through computational modeling and scientific software instrumentation.',
+        cernn_bullet_2: 'Implemented data pre-processing and visualization scripts for experimental datasets.',
+        brq_role: 'Python Developer',
+        brq_period: 'January 2024 - July 2024',
+        brq_location: 'São Paulo, Brazil',
+        brq_desc: 'Worked in the Automation squad, focusing on automated test development, continuous integration, and process automation to elevate delivery quality and speed.',
+        brq_bullet_1: 'Developed automated test suites using Robot Framework, BDD, and Jenkins, increasing coverage and reliability.',
+        brq_bullet_2: 'Configured CI/CD pipelines for automated test execution integrated into the continuous development cycle.',
+        brq_bullet_3: 'Engineered automations with Python and Power Automate to optimize operational workflows and eliminate manual tasks.',
+        brq_bullet_4: 'Authored SQL scripts to prepare and manipulate databases, supporting automated test runs and validation.',
+        smarthis_role: 'Python Developer',
+        smarthis_period: 'October 2021 - December 2023',
+        smarthis_location: 'Rio de Janeiro, Brazil',
+        smarthis_desc: 'Worked in the internal Automation squad, developing RPA solutions, process automations, and data monitoring tools focused on operational efficiency and digital transformation.',
+        smarthis_bullet_1: 'Developed web, desktop, RPA, scraping, and monitoring automation projects using Python and specialized libraries for automation, data manipulation, OCR, and document handling.',
+        smarthis_bullet_2: 'Implemented solutions utilizing tools and frameworks such as Selenium, Playwright, BotCity, Pandas, OpenPyXL, PyMuPDF, Tesseract, BeautifulSoup, curl_cffi, and MSAL.',
+        smarthis_bullet_3: 'Migrated automations from low-code platforms to high-code Python solutions, boosting process flexibility, scalability, and maintainability.',
+        smarthis_bullet_4: 'Contributed to project delivery and technical documentation with PDD (Process Definition Document) and SDD (Solution Design Document).',
+        total_role: 'Web Developer',
+        total_period: 'June 2020 - October 2021',
+        total_location: 'Feira de Santana, BA, Brazil',
+        total_desc: 'Worked on web system development and maintenance, focusing on application evolution, software quality, and test automation.',
+        total_bullet_1: 'Developed and maintained web applications with Laravel, Vue.js, and Django, delivering new features, bug fixes, and continuous enhancements.',
+        total_bullet_2: 'Collaborated on system stability, performance optimization, and architectural evolution.',
+        total_bullet_3: 'Created end-to-end (E2E) automated tests using Python and Selenium, increasing overall test coverage.',
+        data_role: 'IT Support Analyst',
+        data_period: 'January 2018 - June 2020',
+        data_location: 'Feira de Santana, BA, Brazil',
+        data_desc: 'Handled ERP system support and deployment, focusing on incident troubleshooting, end-user assistance, and operations monitoring.',
+        data_bullet_1: 'Analyzed and investigated discrepancies in ERP systems, identifying root causes and formulating solutions for business continuity.',
+        data_bullet_2: 'Provided technical support to users via remote, phone, and in-person channels.',
+        data_bullet_3: 'Conducted ERP system deployment, version upgrade, and parameterization workflows.',
+        sapelba_role: 'IT Technician',
+        sapelba_period: 'January 2017 - January 2018',
+        sapelba_location: 'Feira de Santana, BA, Brazil',
+        sapelba_desc: 'Worked in IT technical support and infrastructure, focusing on hardware maintenance, computer networking, and user support.',
+        sapelba_bullet_1: 'Performed preventive and corrective hardware maintenance, conducting diagnostics and repairs.',
+        sapelba_bullet_2: 'Configured and administered computer networks, ensuring high availability and connectivity.',
+        footer_text: '&gt; System.out.println("© 2026 Wanderson Fontes. Executing AI Workflows...");'
+      }
+    };
+
     /* 1. TEMA CLARO / ESCURO (PERSISTENTE VIA LOCALSTORAGE) */
     const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('cv_theme') || 'dark';
 
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      updateThemeIcon(currentTheme);
-    }
-
-    themeToggle.addEventListener('click', () => {
-      let theme = document.documentElement.getAttribute('data-theme');
+    function applyTheme(theme) {
       if (theme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        updateThemeIcon('dark');
-      } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        updateThemeIcon('light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
       }
-    });
+      localStorage.setItem('cv_theme', theme);
+      updateThemeIcon(theme);
+    }
 
     function updateThemeIcon(theme) {
       const icon = themeToggle.querySelector('i');
@@ -1247,7 +1459,72 @@
       }
     }
 
-    /* 2. SANFONA INTERATIVA DA LINHA DO TEMPO */
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+
+    /* 2. ALTERNÂNCIA DE IDIOMA (PT-BR / EN) */
+    const langToggle = document.getElementById('lang-toggle');
+    const savedLang = localStorage.getItem('cv_lang') || 'pt-BR';
+
+    function setLanguage(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      localStorage.setItem('cv_lang', lang);
+
+      const t = i18n[lang] || i18n['pt-BR'];
+
+      // Atualiza textos simples
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+
+      // Atualiza textos com tags HTML
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key] !== undefined) {
+          el.innerHTML = t[key];
+        }
+      });
+
+      // Atualiza badge do botão (exibe a próxima opção ou atual)
+      const langBadge = document.getElementById('lang-badge');
+      if (langBadge) {
+        langBadge.textContent = lang === 'pt-BR' ? 'EN' : 'PT';
+      }
+
+      // Atualiza títulos/tooltips
+      if (langToggle) {
+        langToggle.setAttribute('title', t['lang_btn_title']);
+        langToggle.setAttribute('aria-label', t['lang_btn_title']);
+      }
+      if (themeToggle) {
+        themeToggle.setAttribute('title', t['theme_title']);
+      }
+      const printBtn = document.getElementById('print-btn');
+      if (printBtn) {
+        printBtn.setAttribute('title', t['pdf_title']);
+      }
+
+      if (t['doc_title']) {
+        document.title = t['doc_title'];
+      }
+    }
+
+    setLanguage(savedLang);
+
+    langToggle.addEventListener('click', () => {
+      const currentLang = document.documentElement.getAttribute('lang') || 'pt-BR';
+      const nextLang = currentLang === 'pt-BR' ? 'en' : 'pt-BR';
+      setLanguage(nextLang);
+    });
+
+    /* 3. SANFONA INTERATIVA DA LINHA DO TEMPO */
     const timelineCards = document.querySelectorAll('.timeline-card');
     
     timelineCards.forEach(card => {
@@ -1267,7 +1544,7 @@
       });
     });
 
-    /* 3. SCROLL REVEAL COM INTERSECTION OBSERVER */
+    /* 4. SCROLL REVEAL COM INTERSECTION OBSERVER */
     const revealCards = document.querySelectorAll('.card');
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -1289,7 +1566,7 @@
       revealObserver.observe(card);
     });
 
-    /* 4. ANIMAÇÃO DE PREENCHIMENTO DAS BARRAS DE HABILIDADES */
+    /* 5. ANIMAÇÃO DE PREENCHIMENTO DAS BARRAS DE HABILIDADES */
     function animateSkillBars() {
       const fills = document.querySelectorAll('.skill-bar-fill');
       fills.forEach(fill => {
